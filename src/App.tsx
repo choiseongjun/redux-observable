@@ -5,18 +5,20 @@ import { fetchPostList } from "./redux/modules/post";
 import { RootState } from "./index";
 
 function App() {
-  const post: any = useSelector<RootState>((state) => state.post);
+  const post: any = useSelector<RootState>(state => state.post);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPostList(1));
+    dispatch(fetchPostList(2));
   }, []);
+
+  console.log("post=", post);
   return (
     <>
-      {post.data.map((item: any) => (
+      {post.data.map((item: any, index: number) => (
         <div>
-          <div>{item.title}</div>
-          <div>{item.body}</div>
+          <p>{item.title}</p>
+          <p>{item.body}</p>
         </div>
       ))}
     </>
