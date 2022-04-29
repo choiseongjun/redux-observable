@@ -15,7 +15,7 @@ function App() {
   console.log("post=", post);
   return (
     <>
-      {post.data.map((item: any, index: number) => (
+      {post.data?.map((item: any, index: number) => (
         <div>
           <p>{item.title}</p>
           <p>{item.body}</p>
