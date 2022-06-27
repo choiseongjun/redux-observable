@@ -1,26 +1,32 @@
 import { useEffect } from "react";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPostList } from "./redux/modules/post";
+import { fetchPostList,ChangeInput } from "./redux/modules/post";
 import { RootState } from "./index";
 
 function App() {
-  const post: any = useSelector<RootState>(state => state.post);
+  const {posts}: any = useSelector<RootState>(state => state.post);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchPostList(2));
   }, []);
+  const Chg = (e:any)=>{
+    console.log("ee",e.target.value)
+    dispatch(ChangeInput(e.target.value))
+  }
 
-  console.log("post=", post);
+  console.log("post=", posts);
   return (
     <>
-      {post.data?.map((item: any, index: number) => (
+      <input type={"text"} onChange={Chg}  />
+      {posts?.map((item: any, index: number) => (
         <div>
           <p>{item.title}</p>
           <p>{item.body}</p>
         </div>
       ))}
+
     </>
   );
 }
